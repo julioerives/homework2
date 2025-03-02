@@ -5,7 +5,6 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Track scroll position for header styling
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -21,7 +20,6 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  // Toggle mobile menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -39,7 +37,6 @@ const Header: React.FC = () => {
             <span className="text-xl font-bold text-gray-800">PokéExplorer</span>
           </div>
           
-          {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-8">
             {['Inicio', 'Pokédex', 'Tipos', 'Acerca de'].map(item => (
               <a 
@@ -53,7 +50,6 @@ const Header: React.FC = () => {
             ))}
           </nav>
           
-          {/* Mobile menu button */}
           <button 
             className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none"
             onClick={toggleMenu}
@@ -62,7 +58,6 @@ const Header: React.FC = () => {
           </button>
         </div>
         
-        {/* Mobile navigation */}
         {isMenuOpen && (
           <nav className="md:hidden pt-4 pb-2 animate-slideDown">
             <div className="flex flex-col space-y-3">

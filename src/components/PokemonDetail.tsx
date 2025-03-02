@@ -39,7 +39,6 @@ interface PokemonDetailProps {
 const PokemonDetail: React.FC<PokemonDetailProps> = ({ pokemon, onClose, loading }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -53,7 +52,6 @@ const PokemonDetail: React.FC<PokemonDetailProps> = ({ pokemon, onClose, loading
     };
   }, [onClose]);
 
-  // Close modal with escape key
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -67,14 +65,12 @@ const PokemonDetail: React.FC<PokemonDetailProps> = ({ pokemon, onClose, loading
     };
   }, [onClose]);
 
-  // Format Pokémon name
   const formatName = (name: string) => {
     return name.split('-').map(word => 
       word.charAt(0).toUpperCase() + word.slice(1)
     ).join(' ');
   };
 
-  // Format stat name
   const formatStatName = (stat: string) => {
     const statNames: Record<string, string> = {
       'hp': 'HP',
@@ -87,9 +83,8 @@ const PokemonDetail: React.FC<PokemonDetailProps> = ({ pokemon, onClose, loading
     return statNames[stat] || stat;
   };
 
-  // Calculate stat percentage for progress bar
   const calculateStatPercentage = (value: number) => {
-    const maxStat = 255; // Maximum possible stat value
+    const maxStat = 255;
     return Math.min((value / maxStat) * 100, 100);
   };
 

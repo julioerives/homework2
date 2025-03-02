@@ -1,4 +1,3 @@
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -72,7 +71,6 @@
   animation: bounce 1s infinite;
 }
 
-/* Hover effects */
 .hover-scale {
   transition: transform 0.2s ease-in-out;
 }
@@ -90,7 +88,6 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Type colors */
 .type-normal { background-color: #A8A878; }
 .type-fire { background-color: #F08030; }
 .type-water { background-color: #6890F0; }
@@ -116,7 +113,6 @@
   backdrop-filter: blur(4px);
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }

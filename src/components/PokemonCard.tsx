@@ -13,14 +13,12 @@ const PokemonCard: React.FC<PokemonProps> = ({ pokemon, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Format Pokémon name
   const formatName = (name: string) => {
     return name.split('-').map(word => 
       word.charAt(0).toUpperCase() + word.slice(1)
     ).join(' ');
   };
 
-  // Synchronous function to handle mouse events
   const handleMouseEnter = () => {
     setIsHovered(true);
   };

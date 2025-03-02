@@ -54,7 +54,6 @@ function App() {
   const [typeFilter, setTypeFilter] = useState('');
   const [loadingDetail, setLoadingDetail] = useState(false);
 
-  // Asynchronous function to fetch Pokémon list
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
@@ -65,7 +64,6 @@ function App() {
         }
         const data = await response.json();
         
-        // Add ID to each Pokémon based on URL
         const pokemonsWithId = data.results.map((pokemon: Pokemon) => {
           const id = parseInt(pokemon.url.split('/')[6]);
           return { ...pokemon, id };
@@ -83,7 +81,6 @@ function App() {
     fetchPokemons();
   }, []);
 
-  // Synchronous function to filter Pokémon list
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
@@ -100,24 +97,21 @@ function App() {
     setFilteredPokemons(filtered);
   };
 
-  // Clear search input
   const clearSearch = () => {
     setSearchTerm('');
     if (typeFilter === '') {
       setFilteredPokemons(pokemons);
     } else {
-      // Maintain type filter if active
       const filtered = pokemons.filter(pokemon => {
         if (selectedPokemon && selectedPokemon.id === pokemon.id) {
           return selectedPokemon.types.some(t => t.type.name === typeFilter);
         }
-        return true; // Can't filter by type without details
+        return true; 
       });
       setFilteredPokemons(filtered);
     }
   };
 
-  // Asynchronous function to fetch Pokémon details
   const fetchPokemonDetails = async (id: number) => {
     try {
       setLoadingDetail(true);
@@ -134,12 +128,10 @@ function App() {
     }
   };
 
-  // Close Pokémon details modal
   const closeDetails = () => {
     setSelectedPokemon(null);
   };
 
-  // Toggle filters visibility
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
@@ -153,7 +145,6 @@ function App() {
           <h1 className="text-4xl font-bold text-center text-blue-700 mb-2">Pokémon Explorer</h1>
           <p className="text-center text-gray-600 mb-8">Descubre y explora el mundo Pokémon</p>
           
-          {/* Search and filters */}
           <div className="max-w-2xl mx-auto mb-8">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -207,21 +198,18 @@ function App() {
             </div>
           </div>
           
-          {/* Error message */}
           {error && (
             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded">
               <p>{error}</p>
             </div>
           )}
           
-          {/* Loading state */}
           {loading ? (
             <div className="flex justify-center items-center py-20">
               <Loader2 className="h-12 w-12 text-blue-500 animate-spin" />
               <span className="ml-2 text-xl text-gray-600">Cargando Pokémon...</span>
             </div>
           ) : (
-            /* Pokémon grid */
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {filteredPokemons.map(pokemon => (
                 <PokemonCard 
@@ -243,7 +231,6 @@ function App() {
       
       <Footer />
       
-      {/* Pokémon detail modal */}
       {selectedPokemon && (
         <PokemonDetail 
           pokemon={selectedPokemon} 
